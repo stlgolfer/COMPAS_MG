@@ -685,6 +685,7 @@ void Options::OptionValues::Initialise() {
 
     po::variables_map vm;
     m_VM = vm;
+    power_param = 1;
 }
 
 
@@ -1195,6 +1196,11 @@ bool Options::AddOptions(OptionValues *p_Options, po::options_description *p_Opt
             "cool-wind-mass-loss-multiplier",                           
             po::value<double>(&p_Options->m_CoolWindMassLossMultiplier)->default_value(p_Options->m_CoolWindMassLossMultiplier),                                                                  
             ("Multiplicative constant for wind mass loss of cool stars (default = " + std::to_string(p_Options->m_CoolWindMassLossMultiplier)+ ")").c_str()
+        )
+        (
+            "power-param",
+            po::value<double>(&p_Options->power_param)->default_value(p_Options->power_param),
+            ("Power param (default = " + std::to_string(p_Options->power_param)+ ")").c_str()
         )
         (
             "critical-mass-ratio-giant-degenerate-accretor",
@@ -4903,7 +4909,7 @@ COMPAS_VARIABLE Options::OptionValue(const T_ANY_PROPERTY p_Property) const {
     PROGRAM_OPTION property = boost::get<PROGRAM_OPTION>(p_Property);                                                   // get property
                                                                                                                         // get property value
     switch (property) {
-
+        case PROGRAM_OPTION::POWER_PARAM : value = PowerParameter(); break;
         case PROGRAM_OPTION::ADD_OPTIONS_TO_SYSPARMS                        : value = static_cast<int>(AddOptionsToSysParms());                             break;
         case PROGRAM_OPTION::ALLOW_NON_STRIPPED_ECSN                        : value = AllowNonStrippedECSN();                                               break;
         case PROGRAM_OPTION::ALLOW_MS_STAR_TO_SURVIVE_COMMON_ENVELOPE       : value = AllowMainSequenceStarToSurviveCommonEnvelope();                       break;

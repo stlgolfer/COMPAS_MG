@@ -1018,7 +1018,8 @@ enum class PROGRAM_OPTION: int {
 
     ZETA_ADIABATIC_ARBITRARY,
     ZETA_MS,
-    ZETA_RADIATIVE_ENVELOPE_GIANT
+    ZETA_RADIATIVE_ENVELOPE_GIANT,
+    POWER_PARAM
 };
 // map PROGRAM_OPTION to string identifying the property
 // for lookup by the printing functions
@@ -1029,6 +1030,7 @@ enum class PROGRAM_OPTION: int {
 const COMPASUnorderedMap<PROGRAM_OPTION, std::string> PROGRAM_OPTION_LABEL = {
 
     { PROGRAM_OPTION::NONE,                                             "NONE" },
+    { PROGRAM_OPTION::POWER_PARAM, "POWER_PARAM"},
 
     { PROGRAM_OPTION::ALLOW_NON_STRIPPED_ECSN,                          "ALLOW_NON_STRIPPED_ECSN" },
     { PROGRAM_OPTION::ADD_OPTIONS_TO_SYSPARMS,                          "ADD_OPTIONS_TO_SYSPARMS" },
@@ -1618,7 +1620,7 @@ const std::map<BINARY_PROPERTY, PROPERTY_DETAILS> BINARY_PROPERTY_DETAIL = {
 // Note that header strings here should be prefixed with "PO_" to differentiate them from stellar/binary
 // properties of the same name
 const std::map<PROGRAM_OPTION, PROPERTY_DETAILS> PROGRAM_OPTION_DETAIL = {
-
+    {PROGRAM_OPTION::POWER_PARAM, {TYPENAME::DOUBLE, "Power_param", "-", 1, 1}},
     { PROGRAM_OPTION::ADD_OPTIONS_TO_SYSPARMS,                                  { TYPENAME::INT,        "PO_Add_Options_To_SysParms",                "-",          4, 1 }},
     { PROGRAM_OPTION::ALLOW_NON_STRIPPED_ECSN,                                  { TYPENAME::BOOL,       "PO_Allow_Non_Stripped_ECSN",                "Flag",       0, 0 }},
     { PROGRAM_OPTION::ALLOW_MS_STAR_TO_SURVIVE_COMMON_ENVELOPE,                 { TYPENAME::BOOL,       "PO_Allow_MS_To_Survive_CE",                 "Flag",       0, 0 }},

@@ -2994,6 +2994,7 @@ void BaseBinaryStar::CalculateGravitationalRadiation() {
     double numeratorE   = -304.0 * m_Eccentricity * massAndGAndCTerm;
     double denominatorE = 15.0 * m_SemiMajorAxis_3 * m_SemiMajorAxis * std::sqrt(oneMinusESq_5);
     m_DeDtGW            = (numeratorE / denominatorE) * (1.0 + (121.0 / 304.0) * eccentricitySquared) * YEAR_TO_MYR;                                // units of Myr^-1
+    // SAY(std::to_string(OPTIONS->PowerParameter()));
 }
 
 

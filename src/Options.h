@@ -1229,7 +1229,7 @@ public:
 
             int                                                 m_HDF5BufferSize;                                               // HDF5 file IO buffer size (number of chunks)
             int                                                 m_HDF5ChunkSize;                                                // HDF5 file chunk size (number of dataset entries)
-
+            double power_param;
 
             // YAML file
 
@@ -1403,7 +1403,7 @@ public:
     // getters
 
     ADD_OPTIONS_TO_SYSPARMS                     AddOptionsToSysParms() const                                            { return m_CmdLine.optionValues.m_AddOptionsToSysParms.type; }
-
+    double PowerParameter() const { return OPT_VALUE("power-param", power_param, true); }
     bool                                        AllowNonStrippedECSN() const                                            { return OPT_VALUE("allow-non-stripped-ECSN", m_AllowNonStrippedECSN, true); }
     bool                                        AllowMainSequenceStarToSurviveCommonEnvelope() const                    { return OPT_VALUE("common-envelope-allow-main-sequence-survive", m_AllowMainSequenceStarToSurviveCommonEnvelope, true); }
     bool                                        AllowRadiativeEnvelopeStarToSurviveCommonEnvelope() const               { return OPT_VALUE("common-envelope-allow-radiative-envelope-survive", m_AllowRadiativeEnvelopeStarToSurviveCommonEnvelope, true); }
