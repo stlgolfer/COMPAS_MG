@@ -2977,6 +2977,7 @@ double BaseBinaryStar::OmegaAfterSynchronisation(const double p_M1, const double
 void BaseBinaryStar::CalculateGravitationalRadiation() {
 
     // Useful values
+    double power_param = OPTIONS->PowerParameter();
     double eccentricitySquared = m_Eccentricity * m_Eccentricity;
     double oneMinusESq         = 1.0 - eccentricitySquared;
     double oneMinusESq_5       = oneMinusESq * oneMinusESq * oneMinusESq * oneMinusESq * oneMinusESq;
@@ -2988,12 +2989,12 @@ void BaseBinaryStar::CalculateGravitationalRadiation() {
     // Approximate rate of change in semimajor axis
     double numeratorA   = -64.0 * massAndGAndCTerm;
     double denominatorA = 5.0 * m_SemiMajorAxis_3 * std::sqrt(oneMinusESq_5 * oneMinusESq * oneMinusESq);
-    m_DaDtGW            = (numeratorA / denominatorA) * (1.0 + (73.0 / 24.0) * eccentricitySquared + (37.0 / 96.0) * eccentricitySquared * eccentricitySquared) * MYR_TO_YEAR;  // units of AU Myr^-1
+    m_DaDtGW            = power_param*(numeratorA / denominatorA) * (1.0 + (73.0 / 24.0) * eccentricitySquared + (37.0 / 96.0) * eccentricitySquared * eccentricitySquared) * MYR_TO_YEAR;  // units of AU Myr^-1
 
     // Approximate rate of change in eccentricity
     double numeratorE   = -304.0 * m_Eccentricity * massAndGAndCTerm;
     double denominatorE = 15.0 * m_SemiMajorAxis_3 * m_SemiMajorAxis * std::sqrt(oneMinusESq_5);
-    m_DeDtGW            = (numeratorE / denominatorE) * (1.0 + (121.0 / 304.0) * eccentricitySquared) * YEAR_TO_MYR;                                // units of Myr^-1
+    m_DeDtGW            = power_param*(numeratorE / denominatorE) * (1.0 + (121.0 / 304.0) * eccentricitySquared) * YEAR_TO_MYR;                                // units of Myr^-1
     // SAY(std::to_string(OPTIONS->PowerParameter()));
 }
 
